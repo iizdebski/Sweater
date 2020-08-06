@@ -5,5 +5,9 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_admin.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V3__Encode_passwords.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V4__Add_subscriptions_table.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/resources/create-user-after.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/resources/create-user-before.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/resources/messages-list-after.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/test/java/resources/messages-list-before.sql" dialect="PostgreSQL" />
   </component>
 </project>
