@@ -42,15 +42,15 @@ public class MessageControllerTest {
                 .andExpect(xpath("//*[@id='navbarSupportedContent']/div").string("admin"));
     }
 
-    @Test
+   /* @Test
     public void messageListTest() throws Exception {
         this.mockMvc.perform(get("/main"))
                 .andDo(print())
                 .andExpect(authenticated())
                 .andExpect(xpath("//*[@id='message-list']/div").nodeCount(4));
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void filterMessageTest() throws Exception {
         this.mockMvc.perform(get("/main").param("filter", "my-tag"))
                 .andDo(print())
@@ -75,5 +75,5 @@ public class MessageControllerTest {
                 .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']").exists())
                 .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']/div/span").string("fifth"))
                 .andExpect(xpath("//*[@id='message-list']/div[@data-id='10']/div/i").string("#new one"));
-    }
+    }*/
 }
