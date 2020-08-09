@@ -2,6 +2,7 @@ package com.izdebski.sweater.controller;
 
 import com.izdebski.sweater.domain.Message;
 import com.izdebski.sweater.domain.User;
+import com.izdebski.sweater.domain.dto.MessageDto;
 import com.izdebski.sweater.repos.MessageRepo;
 import com.izdebski.sweater.service.MessageService;import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +51,7 @@ public class MessageController {
             @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable,
             @AuthenticationPrincipal User user
     ) {
-        Page<Message> page = messageService.messageList(pageable, filter);
+        Page<MessageDto> page = messageService.messageList(pageable, filter, user);
 
         model.addAttribute("page", page);
         model.addAttribute("url", "/main");
@@ -86,7 +87,7 @@ public class MessageController {
 
         model.addAttribute("messages", messages);
 
-        return "main";
+        return "redirect:/main";
     }
 
     private void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
@@ -114,7 +115,7 @@ public class MessageController {
             @RequestParam(required = false) Message message,
             @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<Message> page = messageService.messageListForUser(pageable, currentUser, author);
+        Page<MessageDto> page = messageService.messageListForUser(pageable, currentUser, author);
 
         model.addAttribute("userChannel", author);
         model.addAttribute("subscriptionsCount", author.getSubscriptions().size());
@@ -152,5 +153,28 @@ public class MessageController {
         }
 
         return "redirect:/user-messages/" + user;
+    }
+
+    @GetMapping("/messages/{message}/like")
+    public String like(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable Message message,
+            RedirectAttributes redirectAttributes,
+            @RequestHeader(required = false) String referer
+    ) {
+        Set<User> likes = message.getLikes();
+
+        if (likes.contains(currentUser)) {
+            likes.remove(currentUser);
+        } else {
+            likes.add(currentUser);
+        }
+
+        UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+
+        components.getQueryParams()
+                .entrySet()
+                .forEach(pair -> redirectAttributes.addAttribute(pair.getKey(), pair.getValue()));
+        return "redirect:" + components.getPath();
     }
 }

@@ -34,6 +34,7 @@ public class MessageControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /*
     @Test
     public void mainPageTest() throws Exception {
         this.mockMvc.perform(get("/main"))
@@ -42,15 +43,15 @@ public class MessageControllerTest {
                 .andExpect(xpath("//*[@id='navbarSupportedContent']/div").string("admin"));
     }
 
-   /* @Test
+    @Test
     public void messageListTest() throws Exception {
         this.mockMvc.perform(get("/main"))
                 .andDo(print())
                 .andExpect(authenticated())
                 .andExpect(xpath("//*[@id='message-list']/div").nodeCount(4));
-    }*/
+    }
 
-   /* @Test
+   @Test
     public void filterMessageTest() throws Exception {
         this.mockMvc.perform(get("/main").param("filter", "my-tag"))
                 .andDo(print())
@@ -60,7 +61,7 @@ public class MessageControllerTest {
                 .andExpect(xpath("//*[@id='message-list']/div[@data-id='3']").exists());
     }
 
-    @Test
+   @Test
     public void addMessageToListTest() throws Exception {
         MockHttpServletRequestBuilder multipart = multipart("/main")
                 .file("file", "123".getBytes())
