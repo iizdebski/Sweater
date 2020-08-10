@@ -5,6 +5,7 @@ import com.izdebski.sweater.domain.dto.CaptchaResponseDto;
 import com.izdebski.sweater.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
