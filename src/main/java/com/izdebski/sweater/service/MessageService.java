@@ -1,5 +1,6 @@
 package com.izdebski.sweater.service;
 
+import com.izdebski.sweater.domain.Message;
 import com.izdebski.sweater.domain.User;
 import com.izdebski.sweater.domain.dto.MessageDto;
 import com.izdebski.sweater.repos.MessageRepo;
@@ -25,5 +26,9 @@ public class MessageService {
 
     public Page<MessageDto> messageListForUser(Pageable pageable, User currentUser, User author) {
         return messageRepo.findByUser(pageable, author, currentUser);
+    }
+
+    public void delete(Message message) {
+        messageRepo.delete(message);
     }
 }

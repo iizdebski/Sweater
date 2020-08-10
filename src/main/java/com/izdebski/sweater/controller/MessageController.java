@@ -181,4 +181,12 @@ public class MessageController {
                 .forEach(pair -> redirectAttributes.addAttribute(pair.getKey(), pair.getValue()));
         return "redirect:" + components.getPath();
     }
+
+    @GetMapping("/user-messages/delete/{user}")
+    public String deleteMessage(@PathVariable User user,
+                                @RequestParam Message message){
+        messageService.delete(message);
+
+        return "redirect:/user-messages/" + user.getId();
+    }
 }

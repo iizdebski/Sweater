@@ -28,6 +28,9 @@
                     <a class="col btn btn-primary" href="/user-messages/${message.author.id}?message=${message.id}">
                         Edit
                     </a>
+                    <a class = "btn btn-danger" href="/user-messages/delete/${message.author.id}?message=${message.id}">
+                        Delete
+                    </a>
                 </#if>
                 </div>
             </div>
